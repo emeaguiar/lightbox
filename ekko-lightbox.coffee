@@ -105,6 +105,8 @@ EkkoLightbox.prototype = {
 					@loadRemoteContent(@options.remote);
 				else if @options.type == 'video'
 					@showVideoIframe(@options.remote)
+				else if @options.type == 'modal'
+					@showModal(@options.remote)
 				else
 					@error "Could not detect remote target type. Force the type using data-type=\"image|youtube|vimeo|instagram|url|video\""
 
@@ -264,6 +266,12 @@ EkkoLightbox.prototype = {
 			@options.onContentLoaded.call(@)
 
 		@modal_arrows.css 'display', 'none' if @modal_arrows #hide the arrows when remote content
+		@
+
+	showModal: (url) ->
+		modalContent = $(url).html()
+
+		@lightbox_body.html modalContent
 		@
 
 	isExternal : (url) ->

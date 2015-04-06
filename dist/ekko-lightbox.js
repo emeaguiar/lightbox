@@ -101,6 +101,8 @@ License: https://github.com/ashleydw/lightbox/blob/master/LICENSE
             return this.loadRemoteContent(this.options.remote);
           } else if (this.options.type === 'video') {
             return this.showVideoIframe(this.options.remote);
+          } else if (this.options.type === 'modal') {
+            return this.showModal(this.options.remote);
           } else {
             return this.error("Could not detect remote target type. Force the type using data-type=\"image|youtube|vimeo|instagram|url|video\"");
           }
@@ -292,6 +294,12 @@ License: https://github.com/ashleydw/lightbox/blob/master/LICENSE
       if (this.modal_arrows) {
         this.modal_arrows.css('display', 'none');
       }
+      return this;
+    },
+    showModal: function(url) {
+      var modalContent;
+      modalContent = $(url).html();
+      this.lightbox_body.html(modalContent);
       return this;
     },
     isExternal: function(url) {
